@@ -1,0 +1,135 @@
+/* Config */
+:root {
+    --green: #32E0C4;
+    --green-hard: #0D7377;
+    --black: #212121;
+    --white:#EEEEEE;
+    --xs: 0.8rem;
+    --sm: 1.2rem;
+    --md: 1.6rem;
+    --lg: 2.4rem;
+    --xl: 3.2rem;
+    --xll: 4.0rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-size: 62.5%;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--green-hard);
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Teko', sans-serif;
+}
+
+/* Main */
+
+.title {
+    margin: var(--xl) 0;
+    font-size: var(--xll);
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+}
+
+.main {
+    margin: var(--sm) 0;
+}
+
+.subtitle {
+    margin: var(--sm) 0;
+    font-size: var(--lg);
+    font-weight: 500;
+    color: var(--white);
+    text-align: center;
+}
+
+.main .button-select {
+    display: block;
+    margin: var(--sm) auto;
+    padding: var(--xs) var(--lg);
+    background-color: var(--green-hard);
+    border: 2px solid var(--green);
+    border-radius: var(--xs);
+}
+
+.main .button-select .button-link {
+    font-size: var(--lg);
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.main .button-select:hover {
+    background-color: var(--green);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transition: .3s all;
+}
+
+.main .button-select:hover .button-link {
+    color: var(--green-hard);
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pakiman-card {
+    background-color: var(--green);
+    width: fit-content;
+    margin: var(--md) 0;
+    padding: var(--md) var(--xl);
+    border-radius: var(--xs);
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.pakiman-name {
+    color: var(--black);
+    font-size: var(--lg);
+    text-align: center;
+}
+
+.pakiman-content {
+    display: flex;
+    align-items: center;
+}
+
+.pakiman-img {
+    width: 100px;
+}
+
+.pakiman-stats h5 {
+    font-size: var(--md);
+    margin-left: var(--sm);
+    color: var(--black);
+    letter-spacing: 1px;
+}
+
+.pakiman-card:hover, .pakiman-card-active  {
+    background-color: var(--green-hard);
+    filter: drop-shadow(0px 0px 10px #EEEEEE);
+    transition: all .5s;
+}
+
+.pakiman-card:hover .pakiman-name ,
+.pakiman-card:hover .pakiman-stats h5,
+.pakiman-card-active .pakiman-name,
+.pakiman-card-active .pakiman-stats h5 {
+    color: var(--white);
+}

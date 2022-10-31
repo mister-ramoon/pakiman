@@ -57,3 +57,18 @@ const removeClassActive = () => {
         card.className = "pakiman-card";
     });
 }
+
+//Map Section
+const mapCanvas = document.querySelector("#mapCanvas");
+let mapDraw = mapCanvas.getContext("2d");
+
+async function loadImage (url) {
+    let img = new Image();
+    await new Promise( load =>
+        img.onload = load,
+        img.src=url
+    );
+    mapDraw.drawImage(img, 10, 10, 65, 45);
+}
+
+loadImage(pakimanes[0].img);

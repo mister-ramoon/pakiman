@@ -12,7 +12,7 @@
 </head>
 <body>
     <h1 class="title">¡PAKIMAN!</h1>
-    <main class="main">
+    <main class="main" style="display: none;">
         <p class="subtitle">Selecciona un Pakiman:</p>
         <section class="main-section" id="pakimans-section">
             <!-- Pakimans Cards -->
@@ -21,6 +21,25 @@
             <a class="button-link" href="#">Seleccionar</a>
         </button>
     </main>
+    <section class="map">
+        <p class="subtitle">Acércate y combate:</p>
+        <div class="map-content">
+            <canvas id="mapCanvas"></canvas>
+            <div class="map-controls">
+                <button > Arriba </button>
+                <div>
+                    <button> Izquierda </button>
+                    <button> Derecha </button>
+                </div>
+                <button> Abajo </button>
+            </div>
+            <div style="display: none;">
+                <img src="./assets/images/cauchin.png" id="cauchinImg" alt="Cauchin Image"/>
+                <img src="./assets/images/pokacho.png" id="pokachoImg" alt="Pokacho Image"/>
+                <img src="./assets/images/tocinauro.png" id="tocinauroImg" alt="Tocinauro Image"/>
+            </div>
+        </div>
+    </section>
     <script src="./js/index.js"></script>
 </body>
 </html>

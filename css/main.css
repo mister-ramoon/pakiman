@@ -45,7 +45,9 @@ h6 {
 }
 
 .main {
-    margin: var(--sm) 0;
+    max-width: 1800px;
+    margin: auto;
+    margin: var(--sm) ;
 }
 
 .subtitle {
@@ -132,4 +134,75 @@ h6 {
 .pakiman-card-active .pakiman-name,
 .pakiman-card-active .pakiman-stats h5 {
     color: var(--white);
+}
+
+
+/* Map Section */
+.map {
+    max-width: 1800px;
+    margin: auto;
+}
+
+.map-content {
+    padding: var(--md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mapCanvas {
+    width: 300px;
+    height: 300px;
+    background: url("../assets/images/map.png");
+    background-size: cover;
+}
+
+.map-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--xl);
+}
+
+.map-controls button {
+    display: block;
+    margin: var(--sm);
+    padding: var(--xs) var(--lg);
+    background-color: var(--green-hard);
+    border: 2px solid var(--green);
+    border-radius: var(--xs);
+    color: var(--white);
+    font-size: var(--md);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.map-controls button:hover, .map-controls button:active {
+    background-color: var(--green);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transition: .3s all;
+    color: var(--green-hard);
+}
+
+.map-controls div {
+    display: flex;
+}
+
+@media screen and (min-width: 768px) {
+    /* Map Section */
+    .map-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .map-controls {
+        margin-left: var(--xl);
+    }
+
+    #mapCanvas {
+        width: 500px;
+        height: 500px;
+    }
 }

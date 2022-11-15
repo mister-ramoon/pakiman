@@ -29,7 +29,7 @@ const cardSection = document.querySelector("#pakimans-section");
 pakimanes.forEach( pakiman => {
     cardSection.innerHTML +=
     `
-        <div class="pakiman-card">
+        <div class="pakiman-card" id="${pakiman.name}">
             <h2 class="pakiman-name">${pakiman.name}</h2>
             <div class="pakiman-content">
                 <img class="pakiman-img" src="${pakiman.img}" alt="pakiman"/>
@@ -66,9 +66,43 @@ async function loadImage (url) {
     let img = new Image();
     await new Promise( load =>
         img.onload = load,
-        img.src=url
+        img.src = url
     );
-    mapDraw.drawImage(img, 10, 10, 65, 45);
+    mapDraw.drawImage(img, 10, 0);
 }
 
-loadImage(pakimanes[0].img);
+// Select Pakiman
+let cauthinCard = document.querySelector("#Cauthin");
+let pokachoCard = document.querySelector("#Pokacho");
+let tocinauroCard = document.querySelector("#Tocinauro");
+
+let buttonSelected = document.querySelector(".button-select");
+let mainSection = document.querySelector(".main");
+let mapSection = document.querySelector(".map");
+
+const selectPakiman = () => {
+    if (cauthinCard.className === "pakiman-card pakiman-card-active") {
+        loadImage(pakimanes[0].img);
+        mainSection.style.display = "none";
+        mapSection.style.display = "block";
+    }
+    else if (pokachoCard.className === "pakiman-card pakiman-card-active") {
+        loadImage(pakimanes[1].img);
+        mainSection.style.display = "none";
+        mapSection.style.display = "block";
+    }
+    else if (tocinauroCard.className === "pakiman-card pakiman-card-active") {
+        loadImage(pakimanes[2].img);
+        mainSection.style.display = "none";
+        mapSection.style.display = "block";
+    }
+    else {
+        alert("¡Selecciona un Pakiman!");
+    }
+}
+
+buttonSelected.addEventListener("click", selectPakiman);
+
+//Multi Load Pakimans
+
+let randomNumber = parseInt( Math.random() * 15 );

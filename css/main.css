@@ -37,7 +37,7 @@ h6 {
 /* Main */
 
 .title {
-    margin: var(--xl) 0;
+    margin: var(--lg) 0;
     font-size: var(--xll);
     font-weight: 700;
     color: var(--white);
@@ -47,7 +47,8 @@ h6 {
 .main {
     max-width: 1800px;
     margin: auto;
-    margin: var(--sm) ;
+    margin: var(--sm);
+    padding-bottom: var(--xs);
 }
 
 .subtitle {
@@ -141,6 +142,7 @@ h6 {
 .map {
     max-width: 1800px;
     margin: auto;
+    display: none;
 }
 
 .map-content {
@@ -204,5 +206,16 @@ h6 {
     #mapCanvas {
         width: 500px;
         height: 500px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    /* Main Section */
+    .main-section {
+        flex-direction: row;
+    }
+
+    .pakiman-card {
+        margin: var(--md);
     }
 }

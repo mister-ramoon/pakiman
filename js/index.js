@@ -62,13 +62,24 @@ const removeClassActive = () => {
 const mapCanvas = document.querySelector("#mapCanvas");
 let mapDraw = mapCanvas.getContext("2d");
 
-async function loadImage (url) {
+async function loadImage (url, xMap, yMap) {
     let img = new Image();
     await new Promise( load =>
         img.onload = load,
         img.src = url
     );
-    mapDraw.drawImage(img, 10, 0);
+    mapDraw.drawImage(img, xMap, yMap, 50, 40);
+}
+
+//Multi Load Pakimans
+let loadPokimansNumber = 5;
+
+function loadRandomPakimons () {
+    for (let i = 0; i < loadPokimansNumber; i++) {
+        let randomNumberPakiman = parseInt( Math.random() * 3 );
+        let randomNumber = parseInt( Math.random() * 300 );
+        loadImage(pakimanes[randomNumberPakiman].img, randomNumber, randomNumber)
+    }
 }
 
 // Select Pakiman
@@ -82,17 +93,20 @@ let mapSection = document.querySelector(".map");
 
 const selectPakiman = () => {
     if (cauthinCard.className === "pakiman-card pakiman-card-active") {
-        loadImage(pakimanes[0].img);
+        loadImage(pakimanes[0].img, 0, 0);
+        loadRandomPakimons();
         mainSection.style.display = "none";
         mapSection.style.display = "block";
     }
     else if (pokachoCard.className === "pakiman-card pakiman-card-active") {
-        loadImage(pakimanes[1].img);
+        loadImage(pakimanes[1].img, 0, 0);
+        loadRandomPakimons();
         mainSection.style.display = "none";
         mapSection.style.display = "block";
     }
     else if (tocinauroCard.className === "pakiman-card pakiman-card-active") {
-        loadImage(pakimanes[2].img);
+        loadImage(pakimanes[2].img, 0, 0);
+        loadRandomPakimons();
         mainSection.style.display = "none";
         mapSection.style.display = "block";
     }
@@ -102,7 +116,3 @@ const selectPakiman = () => {
 }
 
 buttonSelected.addEventListener("click", selectPakiman);
-
-//Multi Load Pakimans
-
-let randomNumber = parseInt( Math.random() * 15 );

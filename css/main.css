@@ -151,12 +151,6 @@ h6 {
     align-items: center;
 }
 
-#mapCanvas {
-    width: 300px;
-    height: 300px;
-    background: url("../assets/images/map.png");
-    background-size: cover;
-}
 
 .map-controls {
     display: flex;

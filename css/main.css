@@ -151,6 +151,11 @@ h6 {
     align-items: center;
 }
 
+#mapCanvas{
+    width: 300px;
+    height: 300px;
+    object-fit: fill;
+}
 
 .map-controls {
     display: flex;
@@ -181,6 +186,95 @@ h6 {
 
 .map-controls div {
     display: flex;
+}
+
+/* Battle */
+.battle {
+    display: none;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding-bottom: var(--xs);
+}
+
+.battle-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    margin: auto;
+    margin-bottom: var(--lg);
+    background-image: url("../assets/images/map.png");
+}
+
+.battle .button-battle {
+    display: block;
+    margin: var(--sm) auto;
+    padding: var(--xs) var(--lg);
+    background-color: var(--green-hard);
+    border: 2px solid var(--green);
+    border-radius: var(--xs);
+}
+
+.battle .button-battle .button-link {
+    font-size: var(--lg);
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.battle .button-battle:hover {
+    background-color: var(--green);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transition: .3s all;
+}
+
+.battle .button-battle:hover .button-link {
+    color: var(--green-hard);
+}
+
+.battle-pakiman {
+    width: 80%;
+    margin: auto;
+    display: grid;
+}
+
+#pakiman1  {
+    justify-content: flex-end;
+}
+
+#pakiman2  {
+    justify-content: flex-start;
+}
+
+#pakiman2 img {
+    transform: rotateY(180deg);
+}
+
+.battle-stacks h3 {
+    font-size: var(--lg);
+    color: var(--white);
+}
+
+.battle-stacks p {
+    font-size: var(--md);
+    font-weight: 600;
+    color: var(--green);
+    text-shadow: 1px 1px 2px var(--black);
+}
+
+.lifeBar {
+    width: 100%;
+    height: 5px;
+    background-color: var(--white);
+    border-radius: 5px;
+}
+
+.lifeBar-update {
+    height: 5px;
+    background-color: var(--green-hard);
+    border-radius: 5px;
 }
 
 @media screen and (min-width: 768px) {

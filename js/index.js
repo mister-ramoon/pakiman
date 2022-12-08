@@ -11,13 +11,13 @@ let pakimanes = [
         name: "Pokacho",
         type: "Fuego 🔥",
         attack: 110,
-        life: 90,
+        life: 100,
         img: "../assets/images/pokacho.png"
     },
     {
         name: "Tocinauro",
         type: "Agua 💧",
-        attack: 90,
+        attack: 100,
         life: 110,
         img: "../assets/images/tocinauro.png"
     },
@@ -36,7 +36,7 @@ pakimanes.forEach( pakiman => {
                 <div class="pakiman-stats">
                     <h5>Tipo: <i>${pakiman.type}</i> </h5>
                     <h5>Ataque: <i>${pakiman.attack}</i> </h5>
-                    <h5>VidaTipo: <i>${pakiman.life}</i> </h5>
+                    <h5>Vida: <i>${pakiman.life}</i> </h5>
                 </div>
             </div>
         </div>
@@ -86,9 +86,7 @@ loadMap(mapImg, 0, 0);
 
 //Multi Load Pakimans
 const loadPakimanes = () => {
-    loadImage(pakimanes[0].img, 50, 50);
-    loadImage(pakimanes[1].img, 100, 100);
-    loadImage(pakimanes[2].img, 150, 150);
+    loadImage(pakimanes[2].img, 100, 50);
 }
 
 // Select Pakiman
@@ -142,6 +140,7 @@ const movePokimanes = async (e) => {
     const DOWN = 40;
     await loadMap(mapImg, 0, 0);
     loadPakimanes();
+    startBattle();
 
     if( selectedPakiman === "Cauthin") {
 
@@ -164,6 +163,10 @@ const movePokimanes = async (e) => {
 
             case DOWN:
                 actualMoveY = actualMoveY + moveNumber;
+                loadImage(pakimanes[0].img, actualMoveX, actualMoveY);
+            break;
+
+            default:
                 loadImage(pakimanes[0].img, actualMoveX, actualMoveY);
             break;
         }
@@ -191,6 +194,10 @@ const movePokimanes = async (e) => {
                 actualMoveY = actualMoveY + moveNumber;
                 loadImage(pakimanes[1].img, actualMoveX, actualMoveY);
             break;
+
+            default:
+                loadImage(pakimanes[0].img, actualMoveX, actualMoveY);
+            break;
         }
     }
 
@@ -214,6 +221,10 @@ const movePokimanes = async (e) => {
             case DOWN:
                 actualMoveY = actualMoveY + moveNumber;
                 loadImage(pakimanes[2].img, actualMoveX, actualMoveY);
+            break;
+
+            default:
+                loadImage(pakimanes[0].img, actualMoveX, actualMoveY);
             break;
         }
     }
@@ -244,6 +255,7 @@ const movePokimanesBtnUp = async () => {
         actualMoveY = actualMoveY - moveNumber;
         loadImage(pakimanes[2].img, actualMoveX, actualMoveY);
     }
+
 }
 
 const movePokimanesBtnDown = async () => {
@@ -310,3 +322,128 @@ upButton.addEventListener("click", movePokimanesBtnUp);
 downButton.addEventListener("click", movePokimanesBtnDown);
 leftButton.addEventListener("click", movePokimanesBtnLeft);
 rightButton.addEventListener("click", movePokimanesBtnRight);
+
+//Battle
+let battleSection = document.querySelector(".battle");
+let battlePakiman1 = document.querySelector("#pakiman1");
+let battlePakiman2 = document.querySelector("#pakiman2");
+let buttonBattle = document.querySelector(".button-battle");
+
+const startBattle = () => {
+    let pakiman1Life = pakimanes[2].life;
+    let pakiman1LifeBar = 100 * pakiman1Life / 100;
+
+    if (actualMoveX === 100 && actualMoveY === 50) {
+        mapSection.style.display = "none";
+        battleSection.style.display = "block";
+
+        battlePakiman1.innerHTML = `
+            <div class="battle-stacks">
+                <h3>${pakimanes[2].name}</h3>
+                <div class="lifeBar">
+                    <div class="lifeBar-update" style="width: ${pakiman1LifeBar}%"></div>
+                </div>
+                <p>${pakiman1Life}/${pakimanes[2].life}</p>
+            </div>
+            <img src="${pakimanes[2].img}" />
+        `
+    }
+
+    if( selectedPakiman === "Cauthin") {
+        let pakiman2Life = pakimanes[0].life;
+        let pakiman2LifeBar = 100 * pakiman2Life / 100;
+
+        battlePakiman2.innerHTML = `
+            <div class="battle-stacks">
+                <h3>${pakimanes[0].name}</h3>
+                <div class="lifeBar">
+                    <div class="lifeBar-update" style="width: ${pakiman2LifeBar}%"></div>
+                </div>
+                <p>${pakiman2Life}/${pakimanes[0].life}</p>
+            </div>
+            <img src="${pakimanes[0].img}" />
+        `
+
+        buttonBattle.addEventListener("click", () => {
+            pakiman1Life = pakiman1Life - pakimanes[0].attack;
+            pakiman1LifeBar = 100 * pakiman1Life / 100;
+
+            battlePakiman1.innerHTML = `
+                <div class="battle-stacks">
+                    <h3>${pakimanes[2].name}</h3>
+                    <div class="lifeBar">
+                        <div class="lifeBar-update" style="width: ${pakiman1LifeBar}%"></div>
+                    </div>
+                    <p>${pakiman1Life}/${pakimanes[2].life}</p>
+                </div>
+                <img src="${pakimanes[2].img}" />
+                `
+        });
+
+    }
+
+    if( selectedPakiman === "Pokacho") {
+        let pakiman2Life = pakimanes[1].life;
+        let pakiman2LifeBar = 100 * pakiman2Life / 100;
+
+        battlePakiman2.innerHTML = `
+            <div class="battle-stacks">
+                <h3>${pakimanes[1].name}</h3>
+                <div class="lifeBar">
+                    <div class="lifeBar-update" style="width: ${pakiman2LifeBar}%"></div>
+                </div>
+                <p>${pakiman2Life}/${pakimanes[1].life}</p>
+            </div>
+            <img src="${pakimanes[1].img}" />
+        `
+
+        buttonBattle.addEventListener("click", () => {
+            pakiman1Life = pakiman1Life - pakimanes[1].attack;
+            pakiman1LifeBar = 100 * pakiman1Life / 100;
+
+            battlePakiman1.innerHTML = `
+                <div class="battle-stacks">
+                    <h3>${pakimanes[2].name}</h3>
+                    <div class="lifeBar">
+                        <div class="lifeBar-update" style="width: ${pakiman1LifeBar}%"></div>
+                    </div>
+                    <p>${pakiman1Life}/${pakimanes[2].life}</p>
+                </div>
+                <img src="${pakimanes[2].img}" />
+                `
+        });
+    }
+
+    if( selectedPakiman === "Tocinauro") {
+        let pakiman2Life = pakimanes[2].life;
+        let pakiman2LifeBar = 100 * pakiman2Life / 100;
+
+        battlePakiman2.innerHTML = `
+            <div class="battle-stacks">
+                <h3>${pakimanes[2].name}</h3>
+                <div class="lifeBar">
+                    <div class="lifeBar-update" style="width: ${pakiman2LifeBar}%"></div>
+                </div>
+                <p>${pakiman2Life}/${pakimanes[2].life}</p>
+            </div>
+            <img src="${pakimanes[2].img}" />
+        `
+
+        buttonBattle.addEventListener("click", () => {
+            pakiman1Life = pakiman1Life - pakimanes[2].attack;
+            pakiman1LifeBar = 100 * pakiman1Life / 100;
+
+            battlePakiman1.innerHTML = `
+                <div class="battle-stacks">
+                    <h3>${pakimanes[2].name}</h3>
+                    <div class="lifeBar">
+                        <div class="lifeBar-update" style="width: ${pakiman1LifeBar}%"></div>
+                    </div>
+                    <p>${pakiman1Life}/${pakimanes[2].life}</p>
+                </div>
+                <img src="${pakimanes[2].img}" />
+                `
+        });
+    }
+}
+

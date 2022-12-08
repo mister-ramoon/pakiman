@@ -328,6 +328,7 @@ let battleSection = document.querySelector(".battle");
 let battlePakiman1 = document.querySelector("#pakiman1");
 let battlePakiman2 = document.querySelector("#pakiman2");
 let buttonBattle = document.querySelector(".button-battle");
+let winBattle = document.querySelector(".win");
 
 const startBattle = () => {
     let pakiman1Life = pakimanes[2].life;
@@ -362,7 +363,7 @@ const startBattle = () => {
                 <p>${pakiman2Life}/${pakimanes[0].life}</p>
             </div>
             <img src="${pakimanes[0].img}" />
-        `
+        `;
 
         buttonBattle.addEventListener("click", () => {
             pakiman1Life = pakiman1Life - pakimanes[0].attack;
@@ -377,7 +378,20 @@ const startBattle = () => {
                     <p>${pakiman1Life}/${pakimanes[2].life}</p>
                 </div>
                 <img src="${pakimanes[2].img}" />
-                `
+                `;
+
+            if(pakiman1Life < 1) {
+                battleSection.style.display = "none";
+                winBattle.style.display = "flex";
+
+                winBattle.innerHTML = `
+                    <p class="subtitle">¡${pakimanes[0].name} Gana!</p>
+                    <img src="${pakimanes[0].img}" />
+                    <button class="button-win">
+                        <a class="button-link" href="/">Volver a jugar</a>
+                    </button>
+                `;
+            }
         });
 
     }
@@ -409,8 +423,20 @@ const startBattle = () => {
                     </div>
                     <p>${pakiman1Life}/${pakimanes[2].life}</p>
                 </div>
-                <img src="${pakimanes[2].img}" />
-                `
+                <img src="${pakimanes[2].img}" />`;
+
+                if(pakiman1Life < 1) {
+                    battleSection.style.display = "none";
+                    winBattle.style.display = "flex";
+
+                    winBattle.innerHTML = `
+                        <p class="subtitle">¡${pakimanes[1].name} Gana!</p>
+                        <img src="${pakimanes[1].img}" />
+                        <button class="button-win">
+                            <a class="button-link" href="/">Volver a jugar</a>
+                        </button>
+                    `;
+                }
         });
     }
 
@@ -441,8 +467,20 @@ const startBattle = () => {
                     </div>
                     <p>${pakiman1Life}/${pakimanes[2].life}</p>
                 </div>
-                <img src="${pakimanes[2].img}" />
-                `
+                <img src="${pakimanes[2].img}" />`;
+
+                if(pakiman1Life < 1) {
+                    battleSection.style.display = "none";
+                    winBattle.style.display = "flex";
+
+                    winBattle.innerHTML = `
+                        <p class="subtitle">¡${pakimanes[2].name} Gana!</p>
+                        <img src="${pakimanes[2].img}" />
+                        <button class="button-win">
+                            <a class="button-link" href="/">Volver a jugar</a>
+                        </button>
+                    `;
+                }
         });
     }
 }
